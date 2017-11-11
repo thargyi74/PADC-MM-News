@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">PADC-SFC-News</string>
     <string name="action_settings">Settings</string>
+    <string name="dummy_text">ကော့သောင်းမှာ အောက်တိုဘာ ၃ ရက်က ဘုန်းကြီးတပါး ဆွဲကြိုးချ သတ်သေမှု တခုဖြစ်ပွားခဲ့တယ်လို့ ကော့သောင်းမြို့ရဲစခန်းက စခန်းမှူး ဒုရဲမှူးမြင့်မော်က ပြောပါတယ်။ ဖြစ်စဉ်မှာ ရွှေပြည်သာရပ်ကွက်၊ ဇေယျာသိင်္ဂီကမ္မဋ္ဌာန်းကျောင်းမှာ သတင်းသုံးနေထိုင်တဲ့ ဦးပညာစာရ(ခ)ဦးမောင် ဟာ ကျောင်းအနောက်ဘက်သပြေပင်မှာ သင်္ကန်းလှမ်းကြိုးနဲ့ ချည်နှောင်ပြီး ဆွဲကြိုးချ သေဆုံးခဲ့တာ ဖြစ်ပါတယ်။</string>
+    <string name="btn_comment_news">Comment</string>
+    <string name="btn_send_to_news">Send to</string>
 </resources>

@@ -32,6 +32,9 @@
     <dimen name="text_big_2x">60sp</dimen>
     <dimen name="text_big_3x">80sp</dimen>
 
-    
-    
+    <!-- App Specifics values -->
+    <dimen name="logo_size">60dp</dimen>
+    <dimen name="size_tappable_small">48dp</dimen>
+
+
 </resources>
