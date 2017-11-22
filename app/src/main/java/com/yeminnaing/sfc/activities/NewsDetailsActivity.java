@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.yeminnaing.sfc.R;
 import com.yeminnaing.sfc.adapters.NewsImagesPagerAdapter;
+import com.yeminnaing.sfc.adapters.RelatedNewsAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,5 +40,11 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
         NewsImagesPagerAdapter newsImagesPagerAdapter = new NewsImagesPagerAdapter(getApplicationContext());
         vpNewsDetailsImages.setAdapter(newsImagesPagerAdapter);
+
+        RecyclerView rvRelatedNews = findViewById(R.id.rv_related_news);
+        rvRelatedNews.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+        RelatedNewsAdapter relatedNewsAdapter = new RelatedNewsAdapter(getApplicationContext());
+        rvRelatedNews.setAdapter(relatedNewsAdapter);
+
     }
 }
