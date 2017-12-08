@@ -73,7 +73,7 @@
             android:layout_marginTop="@dimen/margin_medium_2"
             android:src="@drawable/img_news_placeholder" />
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/tv_news_statistical_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,12 +82,44 @@
             android:layout_marginTop="@dimen/margin_medium"
             android:text="3 Likes -  3 Comments - Sent to 6 people"
             android:textColor="@color/primary" />
+-->
+
+        <TextView
+            android:id="@+id/tv_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_news_hero_image"
+            android:text="@string/likes"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:textColor="@color/primary"/>
+        <TextView
+            android:id="@+id/tv_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comments"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_below="@id/iv_news_hero_image"
+            android:layout_toEndOf="@id/tv_likes"
+            android:textColor="@color/primary"/>
+
+        <TextView
+            android:id="@+id/tv_sent_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sent_to"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_below="@id/iv_news_hero_image"
+            android:layout_toEndOf="@id/tv_comments"
+            android:textColor="@color/primary"/>
 
         <LinearLayout
             android:id="@+id/ll_news_user_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_news_statistical_data"
+            android:layout_below="@id/tv_likes"
             android:orientation="horizontal"
             android:weightSum="2">
 

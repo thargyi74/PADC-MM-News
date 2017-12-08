@@ -39,12 +39,18 @@ tools:context="com.yeminnaing.sfc.activities.NewsListActivity"
         tools:context="com.yeminnaing.sfc.activities.NewsListActivity"
         tools:showIn="@layout/activity_news_list">
 
-        <android.support.v7.widget.RecyclerView
+        <com.yeminnaing.sfc.components.SmartRecyclelrView
             android:id="@+id/rv_news"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </android.support.v7.widget.RecyclerView>
+        </com.yeminnaing.sfc.components.SmartRecyclelrView>
+
+        <include
+            android:id="@+id/vp_empty_news"
+            layout="@layout/view_pod_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 
