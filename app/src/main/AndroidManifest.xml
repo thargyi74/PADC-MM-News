@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permisscom.yeminnaing.sfcion.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".SFCNewsApp"
@@ -45,6 +45,12 @@
             android:theme="@style/AppTheme.NoActionBar"
 
             />
+
+        <provider
+            android:authorities="com.yeminnaing.sfc"
+            android:name=".network.persistence.MMNewsProvider"
+            android:exported="false"
+            android:syncable="true" />
 
 
     </application>

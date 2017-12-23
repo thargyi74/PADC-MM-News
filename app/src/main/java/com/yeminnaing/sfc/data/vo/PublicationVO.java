@@ -1,6 +1,9 @@
 package com.yeminnaing.sfc.data.vo;
 
+import android.content.ContentValues;
+
 import com.google.gson.annotations.SerializedName;
+import com.yeminnaing.sfc.network.persistence.NewsContract;
 
 /**
  * Created by yeminnaing on 12/3/17.
@@ -25,5 +28,14 @@ public class PublicationVO {
 
     public String getLogo() {
         return logo;
+    }
+
+    public ContentValues parseToContentValues(){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NewsContract.PublicationEntry.COLUMN_PUBBLICATION_ID, publicationId);
+        contentValues.put(NewsContract.PublicationEntry.COLUMN_TITLE, title);
+        contentValues.put(NewsContract.PublicationEntry.COLUMN_LOGO, logo);
+
+        return contentValues;
     }
 }

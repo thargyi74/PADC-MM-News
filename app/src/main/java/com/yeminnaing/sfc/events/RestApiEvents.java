@@ -1,5 +1,7 @@
 package com.yeminnaing.sfc.events;
 
+import android.content.Context;
+
 import com.yeminnaing.sfc.data.vo.NewsVO;
 
 import java.util.List;
@@ -31,10 +33,16 @@ public class RestApiEvents {
     public static class NewDataLoadedEvent{
         private int loadedPageIndex;
         private List<NewsVO> loadedNews;
+        private Context context;
 
-        public NewDataLoadedEvent(int loadedPageIndex, List<NewsVO> loadedNews) {
+        public Context getContext() {
+            return context;
+        }
+
+        public NewDataLoadedEvent(int loadedPageIndex, List<NewsVO> loadedNews, Context context) {
             this.loadedPageIndex = loadedPageIndex;
             this.loadedNews = loadedNews;
+            this.context = context;
         }
 
         public int getLoadedPageIndex() {

@@ -72,7 +72,7 @@ public class NewsViewHolder extends BaseViewHolder<NewsVO> {
 
         mItem = data;
 
-        tvPublicationName.setText(data.getPublication().getTitle());
+       /* tvPublicationName.setText(data.getPublication().getTitle());
         tvBreifNews.setText(data.getBreif());
         tvPublishedDate.setText(data.getPostedDate());
         Glide.with(ivPublicationLogo.getContext())
@@ -106,6 +106,21 @@ public class NewsViewHolder extends BaseViewHolder<NewsVO> {
         }else {
 
             tvSentTo.setText(Html.fromHtml(tvSentTo.getContext().getString(R.string.sent_to, 0)));
+        }*/
+
+        if (data != null) {
+            if (data.getBreif()!=null){
+                tvBreifNews.setText(data.getBreif());
+            }
+            if (data.getImages() != null) {
+                Glide.with(itemView.getContext()).load(data.getImages().get(0)).into(ivNewsHeroImage);
+            }
+            if (data.getPostedDate()!=null){
+                tvPublishedDate.setText(data.getPostedDate());
+            }
+            if (data.getPublication()!=null){
+                Glide.with(itemView.getContext()).load(data.getPublication().getLogo()).into(ivPublicationLogo);
+            }
         }
 
 

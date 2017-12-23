@@ -1,6 +1,9 @@
 package com.yeminnaing.sfc.data.vo;
 
+import android.content.ContentValues;
+
 import com.google.gson.annotations.SerializedName;
+import com.yeminnaing.sfc.network.persistence.NewsContract;
 
 /**
  * Created by yeminnaing on 12/3/17.
@@ -31,5 +34,16 @@ public class CommentVO {
 
     public ActionUserVO getActionUser() {
         return actionUser;
+    }
+
+    public ContentValues parseToContentValues(String newsId){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NewsContract.CommentActionsEntry.COLUMN_USER_ID, actionUser.getUserId());
+        contentValues.put(NewsContract.CommentActionsEntry.COLUMN_COMMENT, comment);
+        contentValues.put(NewsContract.CommentActionsEntry.COLUMN_COMMENT_ID, commentId);
+        contentValues.put(NewsContract.CommentActionsEntry.COLUMN_NEWS_ID, newsId);
+        contentValues.put(NewsContract.CommentActionsEntry.COLUMN_COMMENT_DATE, commentDate);
+
+        return contentValues;
     }
 }

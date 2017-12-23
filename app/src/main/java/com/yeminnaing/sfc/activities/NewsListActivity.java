@@ -1,11 +1,15 @@
 package com.yeminnaing.sfc.activities;
 
+import android.app.LoaderManager;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -23,18 +27,23 @@ import com.yeminnaing.sfc.adapters.NewsAdapter;
 import com.yeminnaing.sfc.components.EmptyViewPod;
 import com.yeminnaing.sfc.components.SmartRecyclelrView;
 import com.yeminnaing.sfc.components.SmartScrollListener;
+import com.yeminnaing.sfc.data.vo.NewsVO;
 import com.yeminnaing.sfc.delegates.NewsItemDelegate;
 import com.yeminnaing.sfc.events.RestApiEvents;
+import com.yeminnaing.sfc.network.persistence.NewsContract;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NewsListActivity extends BaseActivity implements NewsItemDelegate, NavigationView.OnNavigationItemSelectedListener{
+public class NewsListActivity extends BaseActivity implements NewsItemDelegate, NavigationView.OnNavigationItemSelectedListener, android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor>{
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer_layout;
@@ -48,6 +57,8 @@ public class NewsListActivity extends BaseActivity implements NewsItemDelegate, 
     private SmartScrollListener mSmartScrollListener;
 
     private NewsAdapter mNewsAdapter;
+
+    private static final int NEWS_LIST_LOADER_ID =1001;
 
 
 
@@ -90,6 +101,8 @@ public class NewsListActivity extends BaseActivity implements NewsItemDelegate, 
                 Toast.makeText(getApplicationContext(), "end of the death", Toast.LENGTH_SHORT).show();
             }
         });
+
+        getSupportLoaderManager().initLoader(NEWS_LIST_LOADER_ID, null, this);
     }
 
     @Override
@@ -168,7 +181,9 @@ public class NewsListActivity extends BaseActivity implements NewsItemDelegate, 
     @Subscribe (threadMode = ThreadMode.MAIN)
     public void onNewsDataLoaded(RestApiEvents.NewDataLoadedEvent event){
 
-        mNewsAdapter.appendNewData(event.getLoadedNews());
+      /*  mNewsAdapter.appendNewData(event.getLoadedNews());*/
+
+
 
 
     }
@@ -177,6 +192,35 @@ public class NewsListActivity extends BaseActivity implements NewsItemDelegate, 
     public void onErrorInvokingAPI(RestApiEvents.ErrorInvokingAPIEvent event){
 
         Snackbar.make(rvNews, event.getErrorMsg(), Snackbar.LENGTH_INDEFINITE).show();
+
+    }
+
+    @Override
+    public Loader onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getApplicationContext(), NewsContract.NewsEntry.CONTENT_URI, null, null, null, null);
+
+
+    }
+
+    @Override
+    public void onLoadFinished(Loader loader, Cursor data) {
+
+        if(data != null && data.moveToFirst()){
+
+            List<NewsVO>  newsList = new ArrayList<>();
+
+            do{
+                NewsVO news = NewsVO.parseFromCursor(data);
+                newsList.add(news);
+            }while (data.moveToNext());
+
+            mNewsAdapter.setNewData(newsList);
+        }
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader loader) {
 
     }
 }

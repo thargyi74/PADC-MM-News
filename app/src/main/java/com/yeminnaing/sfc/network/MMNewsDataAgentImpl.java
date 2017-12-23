@@ -1,5 +1,7 @@
 package com.yeminnaing.sfc.network;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.yeminnaing.sfc.events.RestApiEvents;
 import com.yeminnaing.sfc.network.response.GetNewResponse;
@@ -54,7 +56,7 @@ public class MMNewsDataAgentImpl implements MMNewsDataAgent {
     }
 
     @Override
-    public void loadMMNews(String accessToken, int pageNo) {
+    public void loadMMNews(String accessToken, int pageNo, final Context context) {
 
 
        Call<GetNewResponse> loadMMNewsCall = theAPI.loadMMNews(pageNo, accessToken);
@@ -67,7 +69,7 @@ public class MMNewsDataAgentImpl implements MMNewsDataAgent {
                 if(getNewResponse != null
                         && getNewResponse.getNewsList().size() >0){
 
-                    RestApiEvents.NewDataLoadedEvent newsDataLoadedevent = new RestApiEvents.NewDataLoadedEvent(getNewResponse.getPageNo(), getNewResponse.getNewsList());
+                    RestApiEvents.NewDataLoadedEvent newsDataLoadedevent = new RestApiEvents.NewDataLoadedEvent(getNewResponse.getPageNo(), getNewResponse.getNewsList(), context);
                     EventBus.getDefault().post(newsDataLoadedevent);
                 }else{
 

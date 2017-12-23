@@ -26,6 +26,7 @@ public abstract class BaseRecyclerAdapter<T extends BaseViewHolder, W> extends R
     @Override
     public void onBindViewHolder(T holder, int position) {
         holder.setData(mData.get(position));
+
     }
 
     @Override
